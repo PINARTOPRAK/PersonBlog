@@ -1,0 +1,28 @@
+﻿@model List<BlogModel> 
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!--Posts Container-->
+<div class="flex flex-wrap justify-between pt-12 -mx-6">
+	@{
+		foreach (var blog in @Model)
+		{
+			<!--1/3 col -->
+			<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+				<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+					<a href="/detay/@blog.Id" class="flex flex-wrap no-underline hover:no-underline">
+						<p class="w-full text-gray-600 text-xs md:text-sm px-6">@blog.Title</p>
+						<p class="text-gray-800 font-serif text-base px-6 mb-5">
+							@blog.Summary
+						</p>
+					</a>
+				</div>
+				<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+					<div class="flex items-center justify-between">
+						<p class="text-gray-600 text-xs md:text-sm"><a href="/admin/removeblog/@blog.Id">Sil</a> <a href="/admin/updateblog/@blog.Id">Düzenle</a></p>
+					</div>
+				</div>
+			</div>
+		}
+	}
+</div>

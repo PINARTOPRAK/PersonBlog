@@ -1,0 +1,116 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@model List<PersonBlog.Models.BlogModel>//listeyi aldık
+
+
+<!--Header-->
+<div class="w-full m-0 p-0 bg-cover bg-bottom" style="background-image:url('/img/cover.jpg'); height: 60vh; max-height:460px;">
+	<div class="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
+		<!--Title-->
+		<p class="text-white font-extrabold text-3xl md:text-5xl">
+			Pınar's Blog
+		</p>
+		<p class="text-xl md:text-2xl text-gray-500">Benim Blog Sayfama Hoşgeldiniz. </p>
+		@{
+			if (SignInManager.IsSignedIn(User))
+			{
+				<p class="text-xl md:text-2xl text-gray-500"><a href="~/admin/blogs" class="text-white">Admin Panel</a></p>
+			}
+			else
+			{
+				<p class="text-xl md:text-2xl text-gray-500"><a href="~/Identity/Account/Login" class="text-white">Giriş Yap</a> <a href="~/Identity/Account/Register" class="text-white">Kayıt Ol</a></p>
+				
+			}
+		}
+		
+
+	</div>
+</div>
+
+<!--Container-->
+<div class="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">
+
+	<div class="mx-0 sm:mx-6">
+
+		<!--Nav-->
+		<nav class="mt-0 w-full">
+			<div class="container mx-auto flex items-center">
+
+				<div class="flex w-1/2 pl-4 text-sm">
+				</div>
+
+
+				<div class="flex w-1/2 justify-end content-center">
+				</div>
+
+				<a href="~/Identity/Account/Login" class="btn btn-primary">Giriş Yap</a>
+
+			</div>
+		</nav>
+
+		<div class="bg-gray-200 w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t">
+
+			<!--Lead Card-->
+			<div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
+				<a class="flex flex-wrap no-underline hover:no-underline">
+					<div class="w-full md:w-2/3 rounded-t">
+						<img src="~/img/post.jpeg" class="h-full w-full shadow">
+					</div>
+
+					<div class="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+						<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+							<div class="w-full font-bold text-xl text-gray-900 px-6">Hoş Geldiniz Kahve Tutkunları! ☕</div>
+							<p class="text-gray-800 font-serif text-base px-6 mb-5">
+								Cafeteryamıza adım atmanın keyfini yaşamaya hazır mısınız? Burası, kahvenin büyülü dünyasına açılan bir kapı, lezzetin ve sıcaklığın buluşma noktası. Her damla kahve, bir hikaye anlatır; biz de bu hikayeleri sizinle paylaşmaya geldik.
+								Kahvenin aroması, sohbetlerin başlangıcıdır. İşte bu yüzden burada, her bir fincan kahve bir serüvene dönüşür. Menümüz, özenle seçilmiş kahve çeşitleri ve özel lezzetlerle dolu. Sadece bir içecek değil, bir tutkudur kahvemiz; siz de bu tutkuya ortak olmaya davetlisiniz.
+								Hazır mısınız? Fincanınızı kaldırın, çünkü kahve tutkunu bir yolculuk sizi bekliyor!
+							</p>
+						</div>
+
+						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+							<div class="flex items-center justify-between">
+							</div>
+						</div>
+					</div>
+
+				</a>
+			</div>
+			
+			
+			<!--/Lead Card-->
+			<!--Posts Container-->
+			<div class="flex flex-wrap justify-between pt-12 -mx-6">
+				@{
+					foreach (var blog in @Model)
+					{
+						<!--1/3 col -->
+						<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+							<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+								<a href="/detay/@blog.Id" class="flex flex-wrap no-underline hover:no-underline">
+									<p class="w-full text-gray-600 text-xs md:text-sm px-6">@blog.Title</p>
+									<p class="text-gray-800 font-serif text-base px-6 mb-5">
+										@blog.Summary
+									</p>
+								</a>
+							</div>
+							<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+								<div class="flex items-center justify-between">
+								</div>
+							</div>
+						</div>
+					}
+				}
+
+			</div>
+			<!--/ Post Content-->
+			
+
+		</div>
+
+
+	</div>
+
+
+</div>
+
+

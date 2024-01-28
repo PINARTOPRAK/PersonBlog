@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+  
+
+ <div class="row">
+      <div class="col-12">
+             <div class="card">
+                        <div class="card-body">
+                             <h2>Blog Ekleme</h2>
+
+                             <form method="post" action="/admin/addblog" style="display:flex; flex-direction:column;">
+                                 <label class="col-md-2 col-form-label">Başlık</label>
+                                  <input type="text" name="Title" placeholder="Başlık" class="form-control">
+
+                                 <label class="col-md-2 col-form-label">Özet</label>
+                                 <input type="text" name="Summary" placeholder="Özet" class="form-control">
+
+                                <label class="col-md-2 col-form-label">İçerik</label>
+                                <input type="text" name="Content" placeholder="İçerik" class="form-control">
+
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">Ekle</button>
+                              </form>
+                      </div>
+              </div>
+       </div>
+ </div>
+
+
+
+
+
+
+
+

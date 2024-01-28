@@ -1,0 +1,80 @@
+﻿@page
+@model RegisterModel
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="row align-items-center justify-content-center">
+    <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card">
+
+            <div class="card-body p-4">
+
+                <div class="text-center mt-2">
+                    <h5 class="text-primary">Hesap oluştur</h5>
+                    <p class="text-muted">Hesabınızı oluşturun.</p>
+                </div>
+                <div class="p-2 mt-4">
+                    
+                     <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="mb-3">
+                            <label class="form-label"  asp-for="Input.Email">Email</label>
+                            <input type="email" class="form-control" asp-for="Input.Email" placeholder="Mailinizi girin.">
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Input.Password">Password</label>
+                            <input type="password" class="form-control" asp-for="Input.Password" placeholder="Şifrenizi girin.">
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Input.ConfirmPassword">Password</label>
+                            <input type="password" class="form-control" asp-for="Input.ConfirmPassword" placeholder="Şifrenizi tekrar girin.">
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="mt-3 text-end">
+                            <button class="btn btn-primary w-sm waves-effect waves-light" id="btnKayit" type="submit">Kayıt ol</button>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-muted mb-0">Bir hesabınız var mı? <a href="~/Identity/Account/Register" id="btnGiris" class="fw-medium text-primary"> Giriş yap</a></p>
+                            @*<a onclick="btnGiris()" class=" btn btn-primary" href="@Url.Action("Account", "Register")">Giriş Yap</a>*@
+
+                            <!-- Örneğin, login.cshtml dosyanızda: -->
+                            <a href="~/Identity/Account/Register" class="btn btn-primary">Giriş Yap</a>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+@*    <script>
+        $(document).ready(function () {
+            $("#btnGiris").click(function () {
+                window.location.href = "~/Identity/Account/Login";
+            });
+        });
+    </script>*@
+
+    <script>
+        function btnGiris() {
+            window.location.href = "~/Identity/Account/Login";
+        }
+    </script>
+
+}

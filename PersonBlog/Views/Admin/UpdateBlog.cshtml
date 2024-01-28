@@ -1,0 +1,28 @@
+﻿@model BlogModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h2>Blog Düzenleme</h2>
+
+                <form method="post" action="/admin/updateblog" style="display:flex; flex-direction:column;">
+                    <label class="col-md-2 col-form-label">Başlık</label>
+                    <input type="text" name="Title" placeholder="Başlık" class="form-control" value="@Model.Title">
+
+                    <label class="col-md-2 col-form-label">Özet</label>
+                    <input type="text" name="Summary" placeholder="Özet" class="form-control" value="@Model.Summary">
+
+                    <label class="col-md-2 col-form-label">İçerik</label>
+                    <input type="text" name="Content" placeholder="İçerik" class="form-control" value="@Model.Content">
+
+                    <input type="hidden" value="@Model.Id" name="Id">
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

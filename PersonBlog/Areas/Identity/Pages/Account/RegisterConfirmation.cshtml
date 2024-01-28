@@ -1,0 +1,22 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Hesap onaylama";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+<p>
+    Hesabınızı aktif etmeniz için tıklamanız yeterlidir: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Tıklayarak hesabınızı aktif edin.</a>
+</p>
+    }
+    else
+    {
+<p>
+        Lütfen mailinizi kontrol edin.
+</p>
+    }
+}
+
