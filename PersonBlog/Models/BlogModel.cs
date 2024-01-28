@@ -8,5 +8,7 @@
         public string Content { get; set; }
         public DateTime Create_Date { get; set; } = DateTime.Now;
         public DateTime Update_Date { get; set; } = DateTime.Now;
+
+        public ICollection<CommentModel> Comments { get; set; }=new List<CommentModel>();
     }
 }

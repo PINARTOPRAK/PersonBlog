@@ -11,5 +11,6 @@ namespace PersonBlog.Data
         {
         }
         public DbSet<BlogModel> Blogs { get; set; }
+        public DbSet<CommentModel> Comments { get; set; }
     }
 }

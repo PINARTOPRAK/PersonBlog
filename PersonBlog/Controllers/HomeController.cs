@@ -22,10 +22,38 @@ namespace PersonBlog.Controllers
         [Route("/detay/{id}")]  //blogların detayını yönlenmesi için ıd kolonunu kullandık
         public IActionResult Detay(int id)
         {
-            BlogModel blog = _context.Blogs.Where(x => x.Id == id).FirstOrDefault();  //burada id kolonundan blogu veritabanında bulup getirdik.
-            return View(blog);// Burda bir tane blog getirmiş olduk
+            BlogModel blog = _context.Blogs.Where(x => x.Id == id).FirstOrDefault();
+            List<CommentModel> comments = _context.Comments.Where(c => c.BlogId == id).ToList();
+            blog.Comments = comments;
+            return View(blog);
+            //BlogModel blog = _context.Blogs.Where(x => x.Id == id).FirstOrDefault();  //burada id kolonundan blogu veritabanında bulup getirdik.
+            //return View(blog);// Burda bir tane blog getirmiş olduk
         }
-        
+        public IActionResult AddComment(int blogId, string content)
+        {
+            // Eğer kullanıcı giriş yapmışsa devam et
+            if (User.Identity.IsAuthenticated)
+            {
+                // Kullanıcının adını al
+                string userName = User.Identity.Name;
+
+                // CommentModel'in BlogId alanını kullanarak bir örnek oluşturun
+                CommentModel comment = new CommentModel
+                {
+                    BlogId = blogId,
+                    UserName = userName,
+                    Content = content
+                };
+
+                // CommentModel'i veritabanına ekleyin
+                _context.Comments.Add(comment);
+                _context.SaveChanges();
+            }
+
+            // Blog detay sayfasına yönlendir
+            return RedirectToAction("Detay", new { id = blogId });
+        }
+
 
     }
 }

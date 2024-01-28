@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @inject SignInManager<IdentityUser> SignInManager
-@model List<PersonBlog.Models.BlogModel>//listeyi aldık
+@model List<BlogModel>//listeyi aldık
 
 
 <!--Header-->
@@ -103,7 +103,11 @@
 
 			</div>
 			<!--/ Post Content-->
-			
+			<form method="post" action="/Home/AddComment">
+				<input type="hidden" name="blogId" value="@blog.Id" />
+				<textarea name="content" rows="3" placeholder="Yorumunuzu buraya girin..."></textarea>
+				<button type="submit">Yorum Ekle</button>
+			</form>
 
 		</div>
 
