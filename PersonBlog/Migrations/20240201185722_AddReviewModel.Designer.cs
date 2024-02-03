@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonBlog.Data;
 
@@ -11,9 +12,11 @@ using PersonBlog.Data;
 namespace PersonBlog.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240201185722_AddReviewModel")]
+    partial class AddReviewModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace PersonBlog.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("BlogModelReview", b =>
-                {
-                    b.Property<int>("BlogModelsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReviewsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BlogModelsId", "ReviewsId");
-
-                    b.HasIndex("ReviewsId");
-
-                    b.ToTable("BlogModelReview");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -289,21 +277,6 @@ namespace PersonBlog.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("BlogModelReview", b =>
-                {
-                    b.HasOne("PersonBlog.Models.BlogModel", null)
-                        .WithMany()
-                        .HasForeignKey("BlogModelsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PersonBlog.Models.Review", null)
-                        .WithMany()
-                        .HasForeignKey("ReviewsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

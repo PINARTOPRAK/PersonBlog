@@ -8,5 +8,6 @@
         public string Content { get; set; }
         public DateTime Create_Date { get; set; } = DateTime.Now;
         public DateTime Update_Date { get; set; } = DateTime.Now;
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

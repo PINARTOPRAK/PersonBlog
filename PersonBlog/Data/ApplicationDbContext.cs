@@ -6,10 +6,12 @@ namespace PersonBlog.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
+
         }
-        public DbSet<BlogModel> Blogs { get; set; }
+        public  DbSet<BlogModel> Blogs { get; set; }
+        public  DbSet<Review> Reviews { get; set; }
     }
 }
