@@ -25,6 +25,7 @@
 <!--image-->
 <div class="container w-full max-w-6xl mx-auto bg-white bg-cover mt-8 rounded" style="height: 20vh;"></div>
 
+
 <!--Container-->
 <div class="container max-w-5xl mx-auto -mt-32">
 
@@ -41,5 +42,112 @@
             <!--/ Post Content-->
         </div>
     </div>
+
+
+   @* <div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
+        <a class="flex flex-wrap no-underline hover:no-underline">
+            <div class="w-full md:w-2/3 rounded-t">
+                <img src="~/img/latte.jpg" class="h-full w-full shadow" height="50" width="40">
+            </div>
+
+
+            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                </div>
+            </div>
+        </a>
+    </div>*@
+
+    @*<div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
+        <a class="flex flex-wrap no-underline hover:no-underline">
+
+            <div class="w-full md:w-2/3 rounded-t">
+                <img src="~/img/latte.jpg" class="h-full w-full object-cover" alt="Latte Image">
+            </div>
+
+            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <!-- Buraya içerik ekleyebilirsiniz, gerekirse -->
+                </div>
+            </div>
+
+        </a>
+    </div>*@
+
+
+    <div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
+        <a class="flex flex-wrap no-underline hover:no-underline">
+            <div class="w-full md:w-2/3 rounded-t">
+                <img src="~/img/latte.jpg" class="h-full w-full object-cover shadow" alt="Latte Image">
+            </div>
+            @foreach (var item in Model.Comments)
+            {
+                 <div class="w-full md:w-2/3 rounded-t">
+
+                <input placeholder="@item.Content" type="text" class="form-control" />
+                
+
+            </div>
+            }
+             <div class="w-full md:w-2/3 rounded-t">
+
+                <input placeholder="yorum girin" id="commentText" type="text" class="form-control" />
+                <input value="gonder" id="gonder" type="button" class="btn" />
+
+            </div>
+            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <!-- İçerik ekleyebilirsiniz, gerekirse -->
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
+        <a class="flex flex-wrap no-underline hover:no-underline">
+           
+
+            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <!-- İçerik ekleyebilirsiniz, gerekirse -->
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+
+
+
+
+       
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+        $(document).ready(function () {
+            $("#gonder").click(function () {
+                var Comment = $('#commentText').val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/CommentPost",
+                    data: {
+                        Comment: Comment,
+                        Id:@Model.Id
+                    },
+                    success: function (response) {
+                        window.location.reload();
+    alert("Yorum başarıyla gönderildi!");
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Bir hata oluştu: " + error);
+                    }
+                });
+            });
+        });
+
+</script>
+
 

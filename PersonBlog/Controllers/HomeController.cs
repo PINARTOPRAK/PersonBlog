@@ -29,6 +29,29 @@ namespace PersonBlog.Controllers
             //BlogModel blog = _context.Blogs.Where(x => x.Id == id).FirstOrDefault();  //burada id kolonundan blogu veritabanında bulup getirdik.
             //return View(blog);// Burda bir tane blog getirmiş olduk
         }
+
+        public JsonResult CommentPost(string Comment,int Id)
+        {
+            try
+            {
+                var data = new CommentModel
+                {
+                   BlogId= Id,
+                   Content= Comment,Create_Date= DateTime.Now
+                };
+
+                _context.Comments.Add(data);  
+                _context.SaveChanges();
+
+                return Json("yorum kaydedildi.");
+            }
+            catch (Exception)
+            {
+
+                return Json("yorum kaydedildi.");
+            }
+          
+        }
         public IActionResult AddComment(int blogId, string content)
         {
             // Eğer kullanıcı giriş yapmışsa devam et
