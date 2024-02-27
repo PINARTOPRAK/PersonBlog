@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FFImageLoading;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PersonBlog.Data;
@@ -10,19 +11,24 @@ namespace PersonBlog.Controllers
     public class AdminController : Controller
 	{
 		private readonly ApplicationDbContext _context;
-		public AdminController(ApplicationDbContext context)
+        
+        public AdminController(ApplicationDbContext context)
 		{
 			_context = context;
-		}
+           
+        }
 		public IActionResult Blogs() //buradan başlatman gerek
         {
 			List<BlogModel> blogs = _context.Blogs.ToList();  //blogları veritabanından getiriyor
 			return View(blogs);
         }
-        public IActionResult AddBlog() //blog eklemeye tıkladığında buraya yönlenecek
-        {
-            return View();
-        }
+		public IActionResult AddBlog() //blog eklemeye tıkladığında buraya yönlenecek
+		{
+			return View();
+		}
+
+
+
 		[HttpPost]
 		public IActionResult AddBlog(BlogModel blog) 
 		{

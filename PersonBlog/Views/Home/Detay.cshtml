@@ -80,13 +80,19 @@
             <div class="w-full md:w-2/3 rounded-t">
                 <img src="~/img/latte.jpg" class="h-full w-full object-cover shadow" alt="Latte Image">
             </div>
+
+            <div class="w-full md:w-2/3 rounded-t">
+                <img src="~/img/americano.jpg" class="h-full w-full object-cover shadow" alt="Americano Image">
+            </div>
+
+ 
+
             @foreach (var item in Model.Comments)
             {
                  <div class="w-full md:w-2/3 rounded-t">
 
                 <input placeholder="@item.Content" type="text" class="form-control" />
                 
-
             </div>
             }
              <div class="w-full md:w-2/3 rounded-t">

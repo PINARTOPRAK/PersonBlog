@@ -1,0 +1,81 @@
+﻿@model Coffee
+
+
+<div class="w-full md:w-2/3 rounded-t">
+    <img src="~/img/americano.jpg" class="h-full w-full object-cover shadow" alt="Americano Image">
+</div>
+
+
+
+<h2>@Model.Name</h2>
+<img src="@Model.ImagePath" alt="@Model.Name" />
+
+@foreach (var item in Model.ImagePath)
+{
+    <div class="w-full md:w-2/3 rounded-t">
+
+        <input placeholder="@item." type="text" class="form-control" />
+
+
+    </div>
+}
+<div class="w-full md:w-2/3 rounded-t">
+
+    <input placeholder="yorum girin" id="commentText" type="text" class="form-control" />
+    <input value="gonder" id="gonder" type="button" class="btn" />
+
+</div>
+<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+    <div class="flex items-center justify-between">
+        <!-- İçerik ekleyebilirsiniz, gerekirse -->
+    </div>
+</div>
+        </a>
+    </div>
+
+<div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
+    <a class="flex flex-wrap no-underline hover:no-underline">
+
+
+        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+            <div class="flex items-center justify-between">
+                <!-- İçerik ekleyebilirsiniz, gerekirse -->
+            </div>
+        </div>
+    </a>
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#gonder").click(function () {
+            var Comment = $('#commentText').val();
+            $.ajax({
+                type: "POST",
+                url: "/Home/CommentPost",
+                data: {
+                    Comment: Comment,
+                    Id: @Model.Name
+                        },
+                success: function (response) {
+                    window.location.reload();
+                    alert("Yorum başarıyla gönderildi!");
+                },
+                error: function (xhr, status, error) {
+                    alert("Bir hata oluştu: " + error);
+                }
+            });
+        });
+    });
+
+</script>
